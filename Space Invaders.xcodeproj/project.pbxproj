@@ -15,6 +15,8 @@
 		634E60642037F36300036980 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634E60622037F36300036980 /* Main.storyboard */; };
 		634E60662037F36300036980 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 634E60652037F36300036980 /* Assets.xcassets */; };
 		634E60692037F36300036980 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634E60672037F36300036980 /* LaunchScreen.storyboard */; };
+		6376A97A2038C26A00B7ADF9 /* MainMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6376A9792038C26A00B7ADF9 /* MainMenu.sks */; };
+		6376A97E2038C2D900B7ADF9 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6376A97D2038C2D900B7ADF9 /* MainMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		634E60652037F36300036980 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		634E60682037F36300036980 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		634E606A2037F36300036980 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6376A9792038C26A00B7ADF9 /* MainMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenu.sks; sourceTree = "<group>"; };
+		6376A97D2038C2D900B7ADF9 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +64,35 @@
 		634E60572037F36300036980 /* Space Invaders */ = {
 			isa = PBXGroup;
 			children = (
-				634E60582037F36300036980 /* AppDelegate.swift */,
-				634E605A2037F36300036980 /* GameScene.sks */,
-				634E605C2037F36300036980 /* Actions.sks */,
-				634E605E2037F36300036980 /* GameScene.swift */,
 				634E60602037F36300036980 /* GameViewController.swift */,
+				63EDAFBD2038C661007041BE /* Main Menu */,
+				63EDAFBC2038C64D007041BE /* GameScene */,
+				634E60582037F36300036980 /* AppDelegate.swift */,
+				634E605C2037F36300036980 /* Actions.sks */,
 				634E60622037F36300036980 /* Main.storyboard */,
 				634E60652037F36300036980 /* Assets.xcassets */,
 				634E60672037F36300036980 /* LaunchScreen.storyboard */,
 				634E606A2037F36300036980 /* Info.plist */,
 			);
 			path = "Space Invaders";
+			sourceTree = "<group>";
+		};
+		63EDAFBC2038C64D007041BE /* GameScene */ = {
+			isa = PBXGroup;
+			children = (
+				634E605A2037F36300036980 /* GameScene.sks */,
+				634E605E2037F36300036980 /* GameScene.swift */,
+			);
+			path = GameScene;
+			sourceTree = "<group>";
+		};
+		63EDAFBD2038C661007041BE /* Main Menu */ = {
+			isa = PBXGroup;
+			children = (
+				6376A9792038C26A00B7ADF9 /* MainMenu.sks */,
+				6376A97D2038C2D900B7ADF9 /* MainMenu.swift */,
+			);
+			path = "Main Menu";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				634E60642037F36300036980 /* Main.storyboard in Resources */,
+				6376A97A2038C26A00B7ADF9 /* MainMenu.sks in Resources */,
 				634E605B2037F36300036980 /* GameScene.sks in Resources */,
 				634E60662037F36300036980 /* Assets.xcassets in Resources */,
 				634E60692037F36300036980 /* LaunchScreen.storyboard in Resources */,
@@ -150,6 +173,7 @@
 				634E605F2037F36300036980 /* GameScene.swift in Sources */,
 				634E60612037F36300036980 /* GameViewController.swift in Sources */,
 				634E60592037F36300036980 /* AppDelegate.swift in Sources */,
+				6376A97E2038C2D900B7ADF9 /* MainMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

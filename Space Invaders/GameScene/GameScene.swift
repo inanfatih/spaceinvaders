@@ -13,7 +13,11 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     
     
     override func didMove(to view: SKView) {
-      
+    
+        let boss: SKSpriteNode = self.childNode(withName: "boss") as! SKSpriteNode
+        let weapon: SKSpriteNode = self.childNode(withName: "weapon") as! SKSpriteNode
+
+ 
     }
     
     
