@@ -20,6 +20,8 @@
 		639270622039575400C63224 /* Bullet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 639270612039575400C63224 /* Bullet.sks */; };
 		639270642039665700C63224 /* spacemusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 639270632039665700C63224 /* spacemusic.mp3 */; };
 		6392706620396BB500C63224 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6392706520396BB500C63224 /* ScoreManager.swift */; };
+		63A6C74D203A0E2700BD5806 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63A6C74B203A0E2700BD5806 /* Assets.xcassets */; };
+		63A6C74F203A0EF200BD5806 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 63A6C74E203A0EF200BD5806 /* Explosion.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		639270612039575400C63224 /* Bullet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Bullet.sks; sourceTree = "<group>"; };
 		639270632039665700C63224 /* spacemusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = spacemusic.mp3; sourceTree = "<group>"; };
 		6392706520396BB500C63224 /* ScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
+		63A6C74B203A0E2700BD5806 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		63A6C74E203A0EF200BD5806 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +94,9 @@
 			children = (
 				639270612039575400C63224 /* Bullet.sks */,
 				634E605A2037F36300036980 /* GameScene.sks */,
+				63A6C74E203A0EF200BD5806 /* Explosion.sks */,
 				634E605E2037F36300036980 /* GameScene.swift */,
+				63A6C74B203A0E2700BD5806 /* Assets.xcassets */,
 			);
 			path = GameScene;
 			sourceTree = "<group>";
@@ -167,8 +173,10 @@
 				639270642039665700C63224 /* spacemusic.mp3 in Resources */,
 				634E60642037F36300036980 /* Main.storyboard in Resources */,
 				6376A97A2038C26A00B7ADF9 /* MainMenu.sks in Resources */,
+				63A6C74D203A0E2700BD5806 /* Assets.xcassets in Resources */,
 				634E605B2037F36300036980 /* GameScene.sks in Resources */,
 				634E60662037F36300036980 /* Assets.xcassets in Resources */,
+				63A6C74F203A0EF200BD5806 /* Explosion.sks in Resources */,
 				634E60692037F36300036980 /* LaunchScreen.storyboard in Resources */,
 				634E605D2037F36300036980 /* Actions.sks in Resources */,
 			);

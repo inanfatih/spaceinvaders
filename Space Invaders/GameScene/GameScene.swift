@@ -72,6 +72,11 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        
+        let explosion:SKEmitterNode = SKEmitterNode(fileNamed: "Explosion")!
+        explosion.position = contact.bodyA.node!.position
+        self.addChild(explosion)
+        
         contact.bodyA.node?.removeFromParent()
         contact.bodyB.node?.removeFromParent()
     }
