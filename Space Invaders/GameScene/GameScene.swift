@@ -69,6 +69,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         redBug?.physicsBody?.contactTestBitMask = bugCategory | bulletCategory
 
         
+        self.weapon?.position = CGPoint(x: screenWidth! * 0.5, y: 0)
+
+        
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -83,17 +86,17 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
 
     
     func touchDown(atPoint pos : CGPoint) {
-        self.weapon?.position = CGPoint(x: pos.x, y: 50.0)
+        self.weapon?.position = CGPoint(x: pos.x, y: 0)
 
         
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-        self.weapon?.position = CGPoint(x: pos.x, y: 50.0)
+        self.weapon?.position = CGPoint(x: pos.x, y: 0)
     }
     
     func touchUp(atPoint pos : CGPoint) {
-        self.weapon?.position = CGPoint(x: pos.x, y: 50.0)
+        self.weapon?.position = CGPoint(x: pos.x, y: 0)
 
         
     }
