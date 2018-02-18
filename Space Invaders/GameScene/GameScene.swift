@@ -22,6 +22,8 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     var redBug: SKSpriteNode?
     var blueBug: SKSpriteNode?
     var bullet: SKSpriteNode?
+    var livesLabel: Label?
+    var scoreLabel: Label?
     
     var fireRate:TimeInterval = 0.5
     var timeSinceFire:TimeInterval = 0
@@ -126,18 +128,20 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         checkBullet(currentTime - lastTime)
         lastTime = currentTime
         
-//        if(ScoreManager.Lives > 0) {
-//            livesLabel?.text = "Lives: \(ScoreManager.Lives)"
-//            scoreLabel?.text = "Score: \(ScoreManager.Score)"
-//        }
-//        else {
-//            if let view = self.view {
-//                if let scene = SKScene(fileNamed: "GameOverScene") {
-//                    scene.scaleMode = .aspectFit
-//                    view.presentScene(scene)
-//                }
-//            }
-//        }
+        
+        // Update Labels
+        if(ScoreManager.Lives > 0) {
+            livesLabel?.text = "Lives: \(ScoreManager.Lives)"
+            scoreLabel?.text = "Score: \(ScoreManager.Score)"
+        }
+        else {
+            if let view = self.view {
+                if let scene = SKScene(fileNamed: "GameOverScene") {
+                    scene.scaleMode = .aspectFit
+                    view.presentScene(scene)
+                }
+            }
+        }
         
         }
     

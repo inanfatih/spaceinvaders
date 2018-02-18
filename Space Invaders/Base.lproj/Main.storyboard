@@ -17,27 +17,7 @@
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lives" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpg-zK-pYc">
-                                <rect key="frame" x="16" y="20" width="46.5" height="29"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LTo-KX-Rfb">
-                                <rect key="frame" x="295" y="20" width="64" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Qpg-zK-pYc" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" id="6Eb-iZ-wXj"/>
-                            <constraint firstItem="Qpg-zK-pYc" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="16" id="ArI-tS-StQ"/>
-                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="LTo-KX-Rfb" secondAttribute="trailing" constant="16" id="Cr6-45-Isq"/>
-                            <constraint firstItem="LTo-KX-Rfb" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" id="fif-l8-bYf"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
                 </viewController>
