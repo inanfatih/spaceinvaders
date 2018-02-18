@@ -23,19 +23,16 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     var blueBug: SKSpriteNode?
     var bullet: SKSpriteNode?
     
-    
-//    var redBug2: SKSpriteNode?
-//    var redBug3: SKSpriteNode?
-//    var redBug4: SKSpriteNode?
-//    var redBug5: SKSpriteNode?
-//    var redBug6: SKSpriteNode?
-//    var redBug7: SKSpriteNode?
-//    var redBug8: SKSpriteNode?
-    
-    
     var fireRate:TimeInterval = 0.5
     var timeSinceFire:TimeInterval = 0
     var lastTime:TimeInterval = 0
+    
+    let noCategory:UInt32 = 0
+    let bulletCategory:UInt32 = 0b1             //laserCategory
+    let weaponCategory:UInt32 = 0b1 << 1        //playerCategory
+    let bugCategory:UInt32 = 0b1 << 2           //enemyCategory
+    let bossCategory:UInt32 = 0b1 << 3          //itemCategory
+
     
     override func didMove(to view: SKView) {
         
@@ -48,27 +45,37 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         blueBug = self.childNode(withName: "blueBug") as! SKSpriteNode
 
 
-//        redBug2 = self.childNode(withName: "redBug2") as? SKSpriteNode
-//        redBug3 = self.childNode(withName: "redBug3") as? SKSpriteNode
-//        redBug4 = self.childNode(withName: "redBug4") as? SKSpriteNode
-//        redBug5 = self.childNode(withName: "redBug5") as? SKSpriteNode
-//        redBug6 = self.childNode(withName: "redBug6") as? SKSpriteNode
-//        redBug7 = self.childNode(withName: "redBug7") as? SKSpriteNode
-//        redBug8 = self.childNode(withName: "redBug8") as? SKSpriteNode
-
         self.physicsWorld.contactDelegate = self
         
         // play background music
         let music = SKAudioNode(fileNamed: "spacemusic")
         self.addChild(music)
         music.autoplayLooped = true
+
+        
+        weapon = self.childNode(withName: "weapon") as? SKSpriteNode
+        weapon?.physicsBody?.categoryBitMask = weaponCategory
+        weapon?.physicsBody?.collisionBitMask = noCategory
+        weapon?.physicsBody?.contactTestBitMask = bugCategory | bossCategory
+        
+        boss = self.childNode(withName: "boss") as? SKSpriteNode
+        boss?.physicsBody?.categoryBitMask = bossCategory
+        boss?.physicsBody?.collisionBitMask = noCategory
+        boss?.physicsBody?.contactTestBitMask = weaponCategory
+        
+        redBug = self.childNode(withName: "redBug") as? SKSpriteNode
+        redBug?.physicsBody?.categoryBitMask = bugCategory
+        redBug?.physicsBody?.collisionBitMask = noCategory
+        redBug?.physicsBody?.contactTestBitMask = bugCategory | bulletCategory
+
         
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        <#code#>
+        contact.bodyA.node?.removeFromParent()
+        contact.bodyB.node?.removeFromParent()
     }
-    
+
     
     func touchDown(atPoint pos : CGPoint) {
         self.weapon?.position = CGPoint(x: pos.x, y: 50.0)
@@ -151,6 +158,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         let bullet = scene.childNode(withName: "bullet")
         bullet?.position = weapon!.position
         bullet?.move(toParent: self)
+        bullet?.physicsBody?.categoryBitMask = bulletCategory
+        bullet?.physicsBody?.collisionBitMask = noCategory
+        bullet?.physicsBody?.contactTestBitMask = bugCategory
     }
     
     
