@@ -17,6 +17,9 @@
 		634E60692037F36300036980 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634E60672037F36300036980 /* LaunchScreen.storyboard */; };
 		6376A97A2038C26A00B7ADF9 /* MainMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6376A9792038C26A00B7ADF9 /* MainMenu.sks */; };
 		6376A97E2038C2D900B7ADF9 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6376A97D2038C2D900B7ADF9 /* MainMenu.swift */; };
+		639270622039575400C63224 /* Bullet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 639270612039575400C63224 /* Bullet.sks */; };
+		639270642039665700C63224 /* spacemusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 639270632039665700C63224 /* spacemusic.mp3 */; };
+		6392706620396BB500C63224 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6392706520396BB500C63224 /* ScoreManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		634E606A2037F36300036980 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6376A9792038C26A00B7ADF9 /* MainMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenu.sks; sourceTree = "<group>"; };
 		6376A97D2038C2D900B7ADF9 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		639270612039575400C63224 /* Bullet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Bullet.sks; sourceTree = "<group>"; };
+		639270632039665700C63224 /* spacemusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = spacemusic.mp3; sourceTree = "<group>"; };
+		6392706520396BB500C63224 /* ScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +70,7 @@
 		634E60572037F36300036980 /* Space Invaders */ = {
 			isa = PBXGroup;
 			children = (
+				6392706520396BB500C63224 /* ScoreManager.swift */,
 				634E60602037F36300036980 /* GameViewController.swift */,
 				63EDAFBD2038C661007041BE /* Main Menu */,
 				63EDAFBC2038C64D007041BE /* GameScene */,
@@ -73,6 +80,7 @@
 				634E60652037F36300036980 /* Assets.xcassets */,
 				634E60672037F36300036980 /* LaunchScreen.storyboard */,
 				634E606A2037F36300036980 /* Info.plist */,
+				639270632039665700C63224 /* spacemusic.mp3 */,
 			);
 			path = "Space Invaders";
 			sourceTree = "<group>";
@@ -80,6 +88,7 @@
 		63EDAFBC2038C64D007041BE /* GameScene */ = {
 			isa = PBXGroup;
 			children = (
+				639270612039575400C63224 /* Bullet.sks */,
 				634E605A2037F36300036980 /* GameScene.sks */,
 				634E605E2037F36300036980 /* GameScene.swift */,
 			);
@@ -154,6 +163,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				639270622039575400C63224 /* Bullet.sks in Resources */,
+				639270642039665700C63224 /* spacemusic.mp3 in Resources */,
 				634E60642037F36300036980 /* Main.storyboard in Resources */,
 				6376A97A2038C26A00B7ADF9 /* MainMenu.sks in Resources */,
 				634E605B2037F36300036980 /* GameScene.sks in Resources */,
@@ -172,6 +183,7 @@
 			files = (
 				634E605F2037F36300036980 /* GameScene.swift in Sources */,
 				634E60612037F36300036980 /* GameViewController.swift in Sources */,
+				6392706620396BB500C63224 /* ScoreManager.swift in Sources */,
 				634E60592037F36300036980 /* AppDelegate.swift in Sources */,
 				6376A97E2038C2D900B7ADF9 /* MainMenu.swift in Sources */,
 			);
