@@ -28,6 +28,11 @@
 		63A6C765203A2BC600BD5806 /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 63A6C764203A2BC600BD5806 /* GameOverScene.sks */; };
 		63A6C767203A2BEA00BD5806 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A6C766203A2BEA00BD5806 /* GameOverScene.swift */; };
 		63A6C769203A424C00BD5806 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A6C768203A424C00BD5806 /* Label.swift */; };
+		63A6C76B203A929700BD5806 /* Dock51.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A6C76A203A929700BD5806 /* Dock51.ttf */; };
+		63A6C76D203A9A8C00BD5806 /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 63A6C76C203A9A8B00BD5806 /* explosion.wav */; };
+		63A6C76F203A9B1D00BD5806 /* laser.wav in Resources */ = {isa = PBXBuildFile; fileRef = 63A6C76E203A9B1C00BD5806 /* laser.wav */; };
+		63A6C771203AA14F00BD5806 /* music.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 63A6C770203AA14F00BD5806 /* music.m4a */; };
+		63A6C775203AAE0600BD5806 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63A6C773203AAE0600BD5806 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +59,11 @@
 		63A6C764203A2BC600BD5806 /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
 		63A6C766203A2BEA00BD5806 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		63A6C768203A424C00BD5806 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		63A6C76A203A929700BD5806 /* Dock51.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dock51.ttf; sourceTree = "<group>"; };
+		63A6C76C203A9A8B00BD5806 /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
+		63A6C76E203A9B1C00BD5806 /* laser.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = laser.wav; sourceTree = "<group>"; };
+		63A6C770203AA14F00BD5806 /* music.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = music.m4a; sourceTree = "<group>"; };
+		63A6C773203AAE0600BD5806 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +107,10 @@
 				634E60672037F36300036980 /* LaunchScreen.storyboard */,
 				634E606A2037F36300036980 /* Info.plist */,
 				639270632039665700C63224 /* spacemusic.mp3 */,
+				63A6C76C203A9A8B00BD5806 /* explosion.wav */,
+				63A6C76E203A9B1C00BD5806 /* laser.wav */,
+				63A6C76A203A929700BD5806 /* Dock51.ttf */,
+				63A6C770203AA14F00BD5806 /* music.m4a */,
 			);
 			path = "Space Invaders";
 			sourceTree = "<group>";
@@ -110,6 +124,7 @@
 				63A6C757203A287C00BD5806 /* GameObject.swift */,
 				63A6C759203A28D100BD5806 /* Weapon.swift */,
 				63A6C768203A424C00BD5806 /* Label.swift */,
+				63A6C773203AAE0600BD5806 /* Assets.xcassets */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -200,10 +215,15 @@
 				634E60642037F36300036980 /* Main.storyboard in Resources */,
 				6376A97A2038C26A00B7ADF9 /* MainMenu.sks in Resources */,
 				63A6C74D203A0E2700BD5806 /* Assets.xcassets in Resources */,
+				63A6C775203AAE0600BD5806 /* Assets.xcassets in Resources */,
 				634E605B2037F36300036980 /* GameScene.sks in Resources */,
 				634E60662037F36300036980 /* Assets.xcassets in Resources */,
+				63A6C76D203A9A8C00BD5806 /* explosion.wav in Resources */,
+				63A6C771203AA14F00BD5806 /* music.m4a in Resources */,
+				63A6C76F203A9B1D00BD5806 /* laser.wav in Resources */,
 				63A6C74F203A0EF200BD5806 /* Explosion.sks in Resources */,
 				634E60692037F36300036980 /* LaunchScreen.storyboard in Resources */,
+				63A6C76B203A929700BD5806 /* Dock51.ttf in Resources */,
 				63A6C765203A2BC600BD5806 /* GameOverScene.sks in Resources */,
 				634E605D2037F36300036980 /* Actions.sks in Resources */,
 			);

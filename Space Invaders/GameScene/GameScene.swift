@@ -1,18 +1,18 @@
-//
-//  GameScene.swift
-//  Space Invaders
-//
-//  Created by Fatih inan on 2/17/18.
-//  Copyright © 2018 Fatih inan. All rights reserved.
-//
+
 
 import SpriteKit
 import GameplayKit
+import CoreMotion
+import AVFoundation
 
 let screenSize = UIScreen.main.bounds
 var screenWidth: CGFloat?
 
 var screenHeight: CGFloat?
+var motionManager = CMMotionManager()
+var destX:CGFloat  = 0.0
+
+var Ground = SKSpriteNode()
 
 class GameScene: SKScene,SKPhysicsContactDelegate {
     
@@ -23,11 +23,21 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     var blueBug: SKSpriteNode?
     var bullet: SKSpriteNode?
     var livesLabel: Label?
-    var scoreLabel: Label?
+//    var scoreLabel: Label?
     
     var fireRate:TimeInterval = 0.5
     var timeSinceFire:TimeInterval = 0
     var lastTime:TimeInterval = 0
+    
+    var scoreLabel:SKLabelNode!
+    var score:Int = 0 {
+        didSet {
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
+    
+    let motionManger = CMMotionManager()
+    var xAcceleration:CGFloat = 0
     
     let noCategory:UInt32 = 0
     let bulletCategory:UInt32 = 0b1             //laserCategory
@@ -46,11 +56,23 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         redBug = self.childNode(withName: "redBug") as! SKSpriteNode
         blueBug = self.childNode(withName: "blueBug") as! SKSpriteNode
 
-
         self.physicsWorld.contactDelegate = self
+
+        //preload sounds to prevent delays
+        do {
+            let sounds:[String] = ["explosion","laser"]
+            for sound in sounds {
+                let path:String = Bundle.main.path(forResource: sound, ofType: "wav")!
+                let url:URL = URL(fileURLWithPath: path)
+                let player:AVAudioPlayer = try AVAudioPlayer(contentsOf: url)
+                player.prepareToPlay()
+            }
+        } catch {
+            
+        }
         
         // play background music
-        let music = SKAudioNode(fileNamed: "spacemusic")
+        let music = SKAudioNode(fileNamed: "music.m4a")
         self.addChild(music)
         music.autoplayLooped = true
 
@@ -71,10 +93,31 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         redBug?.physicsBody?.contactTestBitMask = bugCategory | bulletCategory
 
         
-        self.weapon?.position = CGPoint(x: screenWidth! * 0.5, y: 0)
+        self.weapon?.position = CGPoint(x: screenWidth! * 0.5, y: 25)
+
+        // add score label
+        scoreLabel = SKLabelNode(text: "Score: 0")
+        scoreLabel.position = CGPoint(x: 100, y: self.frame.size.height - 30)
+        scoreLabel.fontSize = 30
+        scoreLabel.fontColor = UIColor.white
+        score = 0
+        
+        self.addChild(scoreLabel)
 
         
+        // add lives label
+        livesLabel = Label(labelString: "Lives: 5", position: CGPoint(x: 300, y: frame.height - 20.0), fontSize: 30.0, fontName: "Dock51", fontColor: SKColor.white, isCentered: false)
+        self.addChild(livesLabel!)
+        
+        motionManger.accelerometerUpdateInterval = 0.2
+        motionManger.startAccelerometerUpdates(to: OperationQueue.current!) { (data:CMAccelerometerData?, error:Error?) in
+            if let accelerometerData = data {
+                let acceleration = accelerometerData.acceleration
+                self.xAcceleration = CGFloat(acceleration.x) * 0.75 + self.xAcceleration * 0.25
+            }
+        }
     }
+
     
     func didBegin(_ contact: SKPhysicsContact) {
         
@@ -82,23 +125,26 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         explosion.position = contact.bodyA.node!.position
         self.addChild(explosion)
         
+        //play explosion music when hit
+        self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
+        
         contact.bodyA.node?.removeFromParent()
         contact.bodyB.node?.removeFromParent()
     }
 
     
     func touchDown(atPoint pos : CGPoint) {
-        self.weapon?.position = CGPoint(x: pos.x, y: 0)
+        self.weapon?.position = CGPoint(x: pos.x, y: 25)
 
         
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-        self.weapon?.position = CGPoint(x: pos.x, y: 0)
+        self.weapon?.position = CGPoint(x: pos.x, y: 25)
     }
     
     func touchUp(atPoint pos : CGPoint) {
-        self.weapon?.position = CGPoint(x: pos.x, y: 0)
+        self.weapon?.position = CGPoint(x: pos.x, y: 25)
 
         
     }
@@ -142,11 +188,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
                 }
             }
         }
-        
-        }
-    
-    
-
+    }
     
     func checkBullet(_ frameRate: TimeInterval)
     {
@@ -173,8 +215,16 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         bullet?.physicsBody?.categoryBitMask = bulletCategory
         bullet?.physicsBody?.collisionBitMask = noCategory
         bullet?.physicsBody?.contactTestBitMask = bugCategory
-    }
+        
+        //play explosion music when hit
+        self.run(SKAction.playSoundFileNamed("laser", waitForCompletion: false))
+        
+        //remove bullets after 1 sec. to decrease number of nodes
+        let waitAction = SKAction.wait(forDuration: 1.0)
+        let removeAction = SKAction.removeFromParent()
+        bullet?.run(SKAction.sequence([waitAction,removeAction]))
     
+    }
     
 }
 
