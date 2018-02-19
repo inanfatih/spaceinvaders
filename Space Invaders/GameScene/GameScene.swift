@@ -22,6 +22,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     var redBug: SKSpriteNode?
     var blueBug: SKSpriteNode?
     var bullet: SKSpriteNode?
+    
+    var bugsSprites: [Bug] = []
+    
     var livesLabel: Label?
 //    var scoreLabel: Label?
     
@@ -52,10 +55,38 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         screenHeight = frame.height
         boss = self.childNode(withName: "boss") as! SKSpriteNode
         weapon = self.childNode(withName: "weapon") as! SKSpriteNode
-        greenBug = self.childNode(withName: "greenBug") as! SKSpriteNode
-        redBug = self.childNode(withName: "redBug") as! SKSpriteNode
-        blueBug = self.childNode(withName: "blueBug") as! SKSpriteNode
-
+       
+        // Constants used to initialize enemies
+        let numberOfRows:Int = 5
+        let enemiesPerRow:Int = 5
+        let firstRowPositionX: Double = 69.0
+        let firstRowPositionY: Double = 354.0
+        let separationX: Double = 67.0
+        let separationY: Double = 65.0
+        let avatars = ["alien3", "alien2", "alien1"]
+        let scales = [ 0.075, 0.08, 0.025]
+        
+        // Variable that help to change avatar and scale for each group of bugs
+        var currentGroup = -1
+        
+        // Set up enemies
+        for row in 0...numberOfRows-1 {
+            let changeY: Double = separationY * Double(row)
+            let newPositionY = firstRowPositionY + changeY
+            // Every 2 lines, we change the bug avatar
+            if row % 2 == 0 {
+                currentGroup = currentGroup + 1
+            }
+            for index in 0...enemiesPerRow-1 {
+                let bug: Bug = Bug(imageString: avatars[currentGroup], initialScale: CGFloat(scales[currentGroup]))
+                let changeX: Double = separationX * Double(index)
+                let newPositionX = firstRowPositionX + changeX
+                bug.position = CGPoint(x:newPositionX, y: newPositionY)
+                bugsSprites.append(bug)
+                self.addChild(bug)
+            }
+        }
+        
         self.physicsWorld.contactDelegate = self
 
         //preload sounds to prevent delays
@@ -174,6 +205,10 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         checkBullet(currentTime - lastTime)
         lastTime = currentTime
         
+        // Updates enemies positions
+        for bug in bugsSprites {
+            bug.Update()
+        }
         
         // Update Labels
         if(ScoreManager.Lives > 0) {
