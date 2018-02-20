@@ -17,6 +17,7 @@ var Ground = SKSpriteNode()
 class GameScene: SKScene,SKPhysicsContactDelegate {
     
     var boss: SKSpriteNode?
+    var aBug: SKSpriteNode?
     var weapon: SKSpriteNode?
     var bullet: SKSpriteNode?
   
@@ -47,7 +48,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
 
     
     override func didMove(to view: SKView) {
-        
+        self.physicsWorld.contactDelegate = self
         screenWidth = frame.width
         screenHeight = frame.height
         boss = (self.childNode(withName: "boss") as! SKSpriteNode)
@@ -69,15 +70,22 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             bugsSprites.append(BugLine());
             for index in 0...enemiesPerRow-1 {
                 let bug: Bug = Bug(imageString: avatars[currentGroup], initialScale: CGFloat(scales[currentGroup]))
+                //bug.name = "bug"+String(row)+String(index)
                 let changeX: Double = separationX * Double(index)
                 let newPositionX = firstRowPositionX + changeX
                 bug.position = CGPoint(x:newPositionX, y: newPositionY)
                 bugsSprites[row].Append(bug)
                 self.addChild(bug)
+                
+                
+                //aBug = self.childNode(withName: bug.name!) as? SKSpriteNode
+//                bug.physicsBody?.categoryBitMask = bugCategory
+//                bug.physicsBody?.collisionBitMask = noCategory
+//                bug.physicsBody?.contactTestBitMask = bulletCategory | weaponCategory
             }
         }
         
-        self.physicsWorld.contactDelegate = self
+        
 
         //preload sounds to prevent delays
         do {
@@ -130,7 +138,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
 
     
     func didBegin(_ contact: SKPhysicsContact) {
-        
+        print("collision")
         let explosion:SKEmitterNode = SKEmitterNode(fileNamed: "Explosion")!
         explosion.position = contact.bodyA.node!.position
         self.addChild(explosion)
@@ -240,7 +248,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         bullet?.move(toParent: self)
         bullet?.physicsBody?.categoryBitMask = bulletCategory
         bullet?.physicsBody?.collisionBitMask = noCategory
-        bullet?.physicsBody?.contactTestBitMask = bugCategory
+        bullet?.physicsBody?.contactTestBitMask = bossCategory | bugCategory
         
         //play explosion music when hit
         self.run(SKAction.playSoundFileNamed("laser", waitForCompletion: false))

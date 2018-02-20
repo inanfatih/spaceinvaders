@@ -22,6 +22,9 @@ class GameObject: SKSpriteNode, GameProtocol {
         let texture = SKTexture(imageNamed: imageString)
         let color = UIColor.clear
         super.init(texture: texture, color: color, size: texture.size())
+        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
+        self.physicsBody?.isDynamic = false
+        self.physicsBody?.affectedByGravity = false
         self.scale = initialScale
         self.setScale(scale!)
         self.width = texture.size().width * self.scale!
