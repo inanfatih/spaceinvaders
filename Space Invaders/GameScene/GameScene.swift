@@ -53,8 +53,8 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         
         screenWidth = frame.width
         screenHeight = frame.height
-        boss = self.childNode(withName: "boss") as! SKSpriteNode
-        weapon = self.childNode(withName: "weapon") as! SKSpriteNode
+        boss = (self.childNode(withName: "boss") as! SKSpriteNode)
+        weapon = (self.childNode(withName: "weapon") as! SKSpriteNode)
        
         // Constants used to initialize enemies
         let numberOfRows:Int = 5
