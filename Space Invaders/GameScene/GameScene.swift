@@ -18,12 +18,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     
     var boss: SKSpriteNode?
     var weapon: SKSpriteNode?
-    var greenBug: SKSpriteNode?
-    var redBug: SKSpriteNode?
-    var blueBug: SKSpriteNode?
     var bullet: SKSpriteNode?
-    
-    var bugsSprites: [Bug] = []
+  
+    var bugsSprites: [BugLine] = []
     
     var livesLabel: Label?
 //    var scoreLabel: Label?
@@ -56,15 +53,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         boss = (self.childNode(withName: "boss") as! SKSpriteNode)
         weapon = (self.childNode(withName: "weapon") as! SKSpriteNode)
        
-        // Constants used to initialize enemies
-        let numberOfRows:Int = 5
-        let enemiesPerRow:Int = 5
-        let firstRowPositionX: Double = 69.0
-        let firstRowPositionY: Double = 354.0
-        let separationX: Double = 67.0
-        let separationY: Double = 65.0
-        let avatars = ["alien3", "alien2", "alien1"]
-        let scales = [ 0.075, 0.08, 0.025]
+        
         
         // Variable that help to change avatar and scale for each group of bugs
         var currentGroup = -1
@@ -77,12 +66,13 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             if row % 2 == 0 {
                 currentGroup = currentGroup + 1
             }
+            bugsSprites.append(BugLine());
             for index in 0...enemiesPerRow-1 {
                 let bug: Bug = Bug(imageString: avatars[currentGroup], initialScale: CGFloat(scales[currentGroup]))
                 let changeX: Double = separationX * Double(index)
                 let newPositionX = firstRowPositionX + changeX
                 bug.position = CGPoint(x:newPositionX, y: newPositionY)
-                bugsSprites.append(bug)
+                bugsSprites[row].Append(bug)
                 self.addChild(bug)
             }
         }
@@ -117,12 +107,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         boss?.physicsBody?.categoryBitMask = bossCategory
         boss?.physicsBody?.collisionBitMask = noCategory
         boss?.physicsBody?.contactTestBitMask = weaponCategory
-        
-        redBug = self.childNode(withName: "redBug") as? SKSpriteNode
-        redBug?.physicsBody?.categoryBitMask = bugCategory
-        redBug?.physicsBody?.collisionBitMask = noCategory
-        redBug?.physicsBody?.contactTestBitMask = bugCategory | bulletCategory
-
         
         self.weapon?.position = CGPoint(x: screenWidth! * 0.5, y: 25)
 
@@ -206,9 +190,10 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         lastTime = currentTime
         
         // Updates enemies positions
-        for bug in bugsSprites {
-            bug.Update()
+        for bugLine in bugsSprites {
+            bugLine.Update()
         }
+        
         
         // Update Labels
         if(ScoreManager.Lives > 0) {

@@ -16,8 +16,7 @@ import SpriteKit
 import GameplayKit
 
 class Bug: GameObject {
-    var moveDirection: String = "left"
-    
+ 
     // constructor
     init(imageString avatarName: String) {
         // initialize the object with an image
@@ -26,7 +25,7 @@ class Bug: GameObject {
     }
     
     override init(imageString avatarName: String, initialScale scaleValue:CGFloat) {
-        // initialize the object with an image
+        // initialize the object with an image and a scale value
         super.init(imageString: avatarName, initialScale: scaleValue)
         Start()
     }
@@ -38,42 +37,17 @@ class Bug: GameObject {
     override func Start() {
         self.zPosition = 3
         self.Reset()
-        //self.dy = 0.0
     }
     
     override func Reset() {
-//        self.position.y = 700 + self.height!;
-//        let randomX:Int = (randomSource?.nextInt(upperBound: Int(screenWidth! - self.width!)))! + Int(self.halfwidth!)
-//        self.position.x = CGFloat(randomX)
-//        self.dy = CGFloat(((randomSource?.nextUniform())! * 5.0) + 5.0)
-//        self.dx = CGFloat(((randomSource?.nextUniform())! * -4.0) + 2.0)
-        self.dx = 1.0
-        self.dy = 0.0
     }
     
     override func CheckBounds() {
-//        if(self.position.x < (self.width!)/2) {
-//            self.dx = -1.0
-//            moveDirection = "right"
-//        }
-//        if((screenSize.width - self.position.x) < (self.width!)/2) {
-//            self.dx = 1.0
-//            moveDirection = "left"
-//        }
     }
     
     override func Update() {
-        //self.position.y -= self.dy!
-        //self.position.x -= self.dx!
-        //self.CheckBounds()
-        
-//        if(moveDirection == "left") {
-//            self.position.x -= self.dx!
-//        }
-//        else {
-//            self.position.x += self.dx!
-//        }
-//        self.CheckBounds()
+        self.position.x -= self.dx!
+        self.position.y -= self.dy!
     }
     
 }

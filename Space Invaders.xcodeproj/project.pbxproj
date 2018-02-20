@@ -32,6 +32,8 @@
 		63A6C76F203A9B1D00BD5806 /* laser.wav in Resources */ = {isa = PBXBuildFile; fileRef = 63A6C76E203A9B1C00BD5806 /* laser.wav */; };
 		63A6C771203AA14F00BD5806 /* music.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 63A6C770203AA14F00BD5806 /* music.m4a */; };
 		63A6C775203AAE0600BD5806 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63A6C773203AAE0600BD5806 /* Assets.xcassets */; };
+		E158F980203BCD4E004F9F30 /* BugLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E158F97F203BCD4E004F9F30 /* BugLine.swift */; };
+		E158F983203BDBB3004F9F30 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E158F982203BDBB3004F9F30 /* Constants.swift */; };
 		E1E0AB22203B3247008E5B52 /* Bug.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0AB21203B3247008E5B52 /* Bug.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +65,8 @@
 		63A6C76E203A9B1C00BD5806 /* laser.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = laser.wav; sourceTree = "<group>"; };
 		63A6C770203AA14F00BD5806 /* music.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = music.m4a; sourceTree = "<group>"; };
 		63A6C773203AAE0600BD5806 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E158F97F203BCD4E004F9F30 /* BugLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugLine.swift; sourceTree = "<group>"; };
+		E158F982203BDBB3004F9F30 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E1E0AB21203B3247008E5B52 /* Bug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bug.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,8 +100,7 @@
 		634E60572037F36300036980 /* Space Invaders */ = {
 			isa = PBXGroup;
 			children = (
-				E158F97E203BB890004F9F30 /* Fonts */,
-				E158F97D203BB863004F9F30 /* Sounds */,
+				E158F981203BDB9A004F9F30 /* Utils */,
 				634E60602037F36300036980 /* GameViewController.swift */,
 				63A6C75B203A294500BD5806 /* Managers */,
 				63A6C750203A26CC00BD5806 /* Objects */,
@@ -123,6 +126,7 @@
 				63A6C768203A424C00BD5806 /* Label.swift */,
 				63A6C773203AAE0600BD5806 /* Assets.xcassets */,
 				E1E0AB21203B3247008E5B52 /* Bug.swift */,
+				E158F97F203BCD4E004F9F30 /* BugLine.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -165,6 +169,16 @@
 				63A6C76A203A929700BD5806 /* Dock51.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		E158F981203BDB9A004F9F30 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E158F97D203BB863004F9F30 /* Sounds */,
+				E158F97E203BB890004F9F30 /* Fonts */,
+				E158F982203BDBB3004F9F30 /* Constants.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +271,8 @@
 				634E60612037F36300036980 /* GameViewController.swift in Sources */,
 				63A6C758203A287C00BD5806 /* GameObject.swift in Sources */,
 				63A6C763203A2B2300BD5806 /* ScoreManager.swift in Sources */,
+				E158F980203BCD4E004F9F30 /* BugLine.swift in Sources */,
+				E158F983203BDBB3004F9F30 /* Constants.swift in Sources */,
 				634E60592037F36300036980 /* AppDelegate.swift in Sources */,
 				6376A97E2038C2D900B7ADF9 /* MainMenu.swift in Sources */,
 				63A6C767203A2BEA00BD5806 /* GameOverScene.swift in Sources */,
