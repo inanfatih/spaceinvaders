@@ -110,19 +110,14 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         
         self.weapon?.position = CGPoint(x: screenWidth! * 0.5, y: 25)
 
-        // add score label
-        scoreLabel = SKLabelNode(text: "Score: 0")
-        scoreLabel.position = CGPoint(x: 100, y: self.frame.size.height - 30)
-        scoreLabel.fontSize = 30
-        scoreLabel.fontColor = UIColor.white
-        score = 0
-        
-        self.addChild(scoreLabel)
-
-        
+     
         // add lives label
-        livesLabel = Label(labelString: "Lives: 5", position: CGPoint(x: 300, y: frame.height - 20.0), fontSize: 30.0, fontName: "Dock51", fontColor: SKColor.white, isCentered: false)
+        livesLabel = Label(labelString: "Lives: 5", position: CGPoint(x: 20.0, y: frame.height - 20.0), fontSize: 30.0, fontName: "Dock51", fontColor: SKColor.yellow, isCentered: false)
         self.addChild(livesLabel!)
+        
+        // add score label
+        scoreLabel = Label(labelString: "Score: 99999", position: CGPoint(x: frame.width * 0.45, y: frame.height - 20.0), fontSize: 30.0, fontName: "Dock51", fontColor: SKColor.yellow, isCentered: false)
+        self.addChild(scoreLabel!)
         
         motionManger.accelerometerUpdateInterval = 0.2
         motionManger.startAccelerometerUpdates(to: OperationQueue.current!) { (data:CMAccelerometerData?, error:Error?) in
