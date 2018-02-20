@@ -48,13 +48,13 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
 
     
     override func didMove(to view: SKView) {
+        // To allow Physics contact delegate to work
         self.physicsWorld.contactDelegate = self
+        
         screenWidth = frame.width
         screenHeight = frame.height
         boss = (self.childNode(withName: "boss") as! SKSpriteNode)
         weapon = (self.childNode(withName: "weapon") as! SKSpriteNode)
-       
-        
         
         // Variable that help to change avatar and scale for each group of bugs
         var currentGroup = -1
@@ -70,22 +70,19 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             bugsSprites.append(BugLine());
             for index in 0...enemiesPerRow-1 {
                 let bug: Bug = Bug(imageString: avatars[currentGroup], initialScale: CGFloat(scales[currentGroup]))
-                //bug.name = "bug"+String(row)+String(index)
+                bug.name = BugNodeName
                 let changeX: Double = separationX * Double(index)
                 let newPositionX = firstRowPositionX + changeX
                 bug.position = CGPoint(x:newPositionX, y: newPositionY)
                 bugsSprites[row].Append(bug)
                 self.addChild(bug)
                 
-                
-                //aBug = self.childNode(withName: bug.name!) as? SKSpriteNode
-//                bug.physicsBody?.categoryBitMask = bugCategory
-//                bug.physicsBody?.collisionBitMask = noCategory
-//                bug.physicsBody?.contactTestBitMask = bulletCategory | weaponCategory
+                // Set up contact detection for each bug
+                bug.physicsBody?.categoryBitMask = bugCategory
+                bug.physicsBody?.collisionBitMask = noCategory
+                bug.physicsBody?.contactTestBitMask = bulletCategory | weaponCategory
             }
         }
-        
-        
 
         //preload sounds to prevent delays
         do {
@@ -104,20 +101,21 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         let music = SKAudioNode(fileNamed: "music.m4a")
         self.addChild(music)
         music.autoplayLooped = true
-
         
+        // setup contact detection for our hero
         weapon = self.childNode(withName: "weapon") as? SKSpriteNode
         weapon?.physicsBody?.categoryBitMask = weaponCategory
         weapon?.physicsBody?.collisionBitMask = noCategory
         weapon?.physicsBody?.contactTestBitMask = bugCategory | bossCategory
         
+        // setup contact detection for the boss ship
         boss = self.childNode(withName: "boss") as? SKSpriteNode
         boss?.physicsBody?.categoryBitMask = bossCategory
         boss?.physicsBody?.collisionBitMask = noCategory
         boss?.physicsBody?.contactTestBitMask = weaponCategory
         
+        // initial position of our defender hero
         self.weapon?.position = CGPoint(x: screenWidth! * 0.5, y: 25)
-
      
         // add lives label
         livesLabel = Label(labelString: "Lives: 5", position: CGPoint(x: 20.0, y: frame.height - 20.0), fontSize: 30.0, fontName: "Dock51", fontColor: SKColor.yellow, isCentered: false)
@@ -138,7 +136,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
 
     
     func didBegin(_ contact: SKPhysicsContact) {
-        print("collision")
         let explosion:SKEmitterNode = SKEmitterNode(fileNamed: "Explosion")!
         explosion.position = contact.bodyA.node!.position
         self.addChild(explosion)
@@ -153,8 +150,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     
     func touchDown(atPoint pos : CGPoint) {
         self.weapon?.position = CGPoint(x: pos.x, y: 25)
-
-        
     }
     
     func touchMoved(toPoint pos : CGPoint) {
@@ -163,13 +158,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     
     func touchUp(atPoint pos : CGPoint) {
         self.weapon?.position = CGPoint(x: pos.x, y: 25)
-
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
     
@@ -185,10 +176,10 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
-    
     override func update(_ currentTime: TimeInterval) {
         //redBug?.physicsBody?.velocity = CGVector(dx: 25, dy: 0)
         
+        // Check if bugs touches land. In that case, player has lost the game
         for bugLine in bugsSprites {
             if bugLine.landed {
                 if let view = self.view {
@@ -200,6 +191,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             }
         }
         
+        // Shoot defender bullets at a fixed rate
         checkBullet(currentTime - lastTime)
         lastTime = currentTime
         
@@ -208,8 +200,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             bugLine.Update()
         }
         
-        
-        // Update Labels
+        // Update Labels and if the player has no more lives, then he/she has lost the game
         if(ScoreManager.Lives > 0) {
             livesLabel?.text = "Lives: \(ScoreManager.Lives)"
             scoreLabel?.text = "Score: \(ScoreManager.Score)"
@@ -222,6 +213,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
                 }
             }
         }
+        
+        // Shoot bug bullets
+        fireBugBullets(forUpdate: currentTime)
     }
     
     func checkBullet(_ frameRate: TimeInterval)
@@ -240,7 +234,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         timeSinceFire = 0
     }
     
-    
     func shootBullet() {
         let scene:SKScene = SKScene(fileNamed: "Bullet")!
         let bullet = scene.childNode(withName: "bullet")
@@ -257,7 +250,56 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         let waitAction = SKAction.wait(forDuration: 1.0)
         let removeAction = SKAction.removeFromParent()
         bullet?.run(SKAction.sequence([waitAction,removeAction]))
+    }
     
+    func fireBugBullets(forUpdate currentTime: CFTimeInterval) {
+        // First we check if bug bullet already exist
+        let existingBullet = childNode(withName: BugBulletName)
+        
+        if existingBullet == nil {
+            var allBugs = [SKNode]()
+            
+            // Get all bugs currently existing in the scene
+            enumerateChildNodes(withName: BugNodeName) { node, stop in
+                allBugs.append(node)
+            }
+            
+            if allBugs.count > 0 {
+                // Decide on bug randomly
+                let randomIndex = Int(arc4random_uniform(UInt32(allBugs.count)))
+                let invader = allBugs[randomIndex]
+                
+                // Create the bullet and the destinatio (bottom edge of the screen)
+                let bullet: SKNode = SKSpriteNode(color: SKColor.magenta, size: BulletSize)
+                bullet.name = BugBulletName
+                bullet.position = CGPoint(
+                    x: invader.position.x,
+                    y: invader.position.y - invader.frame.size.height / 2 + bullet.frame.size.height / 2
+                )
+                let bulletDestination = CGPoint(x: invader.position.x, y: -(bullet.frame.size.height / 2))
+                
+                // Fire the buttlet using actions
+                fireBugBullet(
+                    bullet: bullet,
+                    toDestination: bulletDestination,
+                    withDuration: 2.0,
+                    andSoundFileName: "laser.wav"
+                )
+            }
+        }
+    }
+    
+    func fireBugBullet(bullet: SKNode, toDestination destination: CGPoint, withDuration duration: CFTimeInterval, andSoundFileName soundName: String) {
+        // Create an action sequence to simulte the bullet movement
+        let bulletAction = SKAction.sequence([
+            SKAction.move(to: destination, duration: duration),
+            SKAction.wait(forDuration: 3.0 / 60.0),
+            SKAction.removeFromParent()
+            ])
+        // setup sound, run the bullet and add it to the scene
+        let soundAction = SKAction.playSoundFileNamed(soundName, waitForCompletion: true)
+        bullet.run(SKAction.group([bulletAction, soundAction]))
+        addChild(bullet)
     }
     
 }

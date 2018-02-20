@@ -29,5 +29,8 @@ let separationY: Double = 45.0
 let avatars = ["alien3", "alien2", "alien1"]
 let scales = [ 0.06, 0.06, 0.015]
 
-
+// Constants used for creating enemy bugs and shooting enemy bullets
+let BugNodeName = "bug"
+let BugBulletName = "BugBullet"
+let BulletSize = CGSize(width:4, height: 8)
 
