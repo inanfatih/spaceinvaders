@@ -96,6 +96,8 @@
 		634E60572037F36300036980 /* Space Invaders */ = {
 			isa = PBXGroup;
 			children = (
+				E158F97E203BB890004F9F30 /* Fonts */,
+				E158F97D203BB863004F9F30 /* Sounds */,
 				634E60602037F36300036980 /* GameViewController.swift */,
 				63A6C75B203A294500BD5806 /* Managers */,
 				63A6C750203A26CC00BD5806 /* Objects */,
@@ -106,11 +108,6 @@
 				634E60652037F36300036980 /* Assets.xcassets */,
 				634E60672037F36300036980 /* LaunchScreen.storyboard */,
 				634E606A2037F36300036980 /* Info.plist */,
-				639270632039665700C63224 /* spacemusic.mp3 */,
-				63A6C76C203A9A8B00BD5806 /* explosion.wav */,
-				63A6C76E203A9B1C00BD5806 /* laser.wav */,
-				63A6C76A203A929700BD5806 /* Dock51.ttf */,
-				63A6C770203AA14F00BD5806 /* music.m4a */,
 			);
 			path = "Space Invaders";
 			sourceTree = "<group>";
@@ -149,6 +146,25 @@
 				63A6C766203A2BEA00BD5806 /* GameOverScene.swift */,
 			);
 			path = GameScene;
+			sourceTree = "<group>";
+		};
+		E158F97D203BB863004F9F30 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				639270632039665700C63224 /* spacemusic.mp3 */,
+				63A6C76C203A9A8B00BD5806 /* explosion.wav */,
+				63A6C770203AA14F00BD5806 /* music.m4a */,
+				63A6C76E203A9B1C00BD5806 /* laser.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		E158F97E203BB890004F9F30 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				63A6C76A203A929700BD5806 /* Dock51.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
