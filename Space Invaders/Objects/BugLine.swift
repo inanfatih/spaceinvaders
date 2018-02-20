@@ -21,6 +21,7 @@ class BugLine: GameObject {
     var groupDx: CGFloat?
     var currentLineY: Double?
     var bugs: [Bug] = []
+    var landed:Bool = false
     
     // constructor
     init() {
@@ -69,6 +70,9 @@ class BugLine: GameObject {
             bug.dy = CGFloat(self.currentLineY!)
             bug.Update()
         }
+        
+        self.landed = (bugs[0].position.y <= 0)
+        
         self.CheckBounds()
     }
     

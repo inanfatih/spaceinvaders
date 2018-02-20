@@ -186,6 +186,17 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         //redBug?.physicsBody?.velocity = CGVector(dx: 25, dy: 0)
         
+        for bugLine in bugsSprites {
+            if bugLine.landed {
+                if let view = self.view {
+                    if let scene = SKScene(fileNamed: "GameOverScene") {
+                        scene.scaleMode = .aspectFit
+                        view.presentScene(scene)
+                    }
+                }
+            }
+        }
+        
         checkBullet(currentTime - lastTime)
         lastTime = currentTime
         
