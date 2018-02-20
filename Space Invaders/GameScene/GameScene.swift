@@ -116,7 +116,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         self.addChild(livesLabel!)
         
         // add score label
-        scoreLabel = Label(labelString: "Score: 99999", position: CGPoint(x: frame.width * 0.45, y: frame.height - 20.0), fontSize: 30.0, fontName: "Dock51", fontColor: SKColor.yellow, isCentered: false)
+        scoreLabel = Label(labelString: "Score: 0", position: CGPoint(x: frame.width * 0.45, y: frame.height - 20.0), fontSize: 30.0, fontName: "Dock51", fontColor: SKColor.yellow, isCentered: false)
         self.addChild(scoreLabel!)
         
         motionManger.accelerometerUpdateInterval = 0.2
