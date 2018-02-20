@@ -47,7 +47,11 @@ class Bug: GameObject {
     
     override func Update() {
         self.position.x -= self.dx!
-        self.position.y -= self.dy!
+        
+        let dyPercentile = (self.dy!.truncatingRemainder(dividingBy: 500))
+        if (dyPercentile == 0) {
+            self.position.y -= (self.dy! + 0.1)
+        }
     }
     
 }
