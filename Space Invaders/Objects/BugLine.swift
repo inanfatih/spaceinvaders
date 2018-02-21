@@ -71,7 +71,7 @@ class BugLine: GameObject {
             bug.Update()
         }
         
-        self.landed = (bugs[0].position.y <= 0)
+        self.landed = (bugs[0].position.y <= (bugs[0].width!)/2)
         
         self.CheckBounds()
     }

@@ -25,7 +25,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     
     var livesLabel: Label?
     var standByLabel: Label?
-//    var scoreLabel: Label?
+    //var scoreLabel: Label?
     
     var fireRate:TimeInterval = 0.5
     var timeSinceFire:TimeInterval = 0
@@ -56,7 +56,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         
         screenWidth = frame.width
         screenHeight = frame.height
-        boss = (self.childNode(withName: "boss") as! SKSpriteNode)
+        boss = (self.childNode(withName: BossNodeName) as! SKSpriteNode)
         weapon = (self.childNode(withName: DefenderName) as! SKSpriteNode)
         
         // Variable that help to change avatar and scale for each group of bugs
@@ -112,7 +112,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         weapon?.physicsBody?.contactTestBitMask = bugCategory | bossCategory | bugBulletCategory
         
         // setup contact detection for the boss ship
-        boss = self.childNode(withName: "boss") as? SKSpriteNode
+        boss = self.childNode(withName: BossNodeName) as? SKSpriteNode
         boss?.physicsBody?.categoryBitMask = bossCategory
         boss?.physicsBody?.collisionBitMask = noCategory
         boss?.physicsBody?.contactTestBitMask = weaponCategory
@@ -149,6 +149,19 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         contact.bodyA.node?.removeFromParent()
         contact.bodyB.node?.removeFromParent()
         
+        // Logic applied when one bug is destroyed by our hero
+        if contact.bodyA.node?.name == BugNodeName || contact.bodyB.node?.name == BugNodeName {
+            ScoreManager.Score += PointsForBug
+            scoreLabel.text = "Score: \(ScoreManager.Score)"
+        }
+        
+        // Logic applied when one bug is destroyed by our hero
+        if contact.bodyA.node?.name == BossNodeName || contact.bodyB.node?.name == BossNodeName {
+            ScoreManager.Score += PointsForBoss
+            scoreLabel.text = "Score: \(ScoreManager.Score)"
+        }
+        
+        // Logic applied when our hero is destroyed by bugs bullets
         if contact.bodyA.node?.name == DefenderName || contact.bodyB.node?.name == DefenderName {
             // If one of the collision involves our hero, then decrease his lives and apply logic to continue playing
             ScoreManager.Lives -= 1
