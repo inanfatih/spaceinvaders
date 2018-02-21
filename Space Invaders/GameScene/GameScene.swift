@@ -24,11 +24,13 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     var bugsSprites: [BugLine] = []
     
     var livesLabel: Label?
+    var standByLabel: Label?
 //    var scoreLabel: Label?
     
     var fireRate:TimeInterval = 0.5
     var timeSinceFire:TimeInterval = 0
     var lastTime:TimeInterval = 0
+    var stopHeroShooting = false;
     
     var scoreLabel:SKLabelNode!
     var score:Int = 0 {
@@ -45,6 +47,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     let weaponCategory:UInt32 = 0b1 << 1        //playerCategory
     let bugCategory:UInt32 = 0b1 << 2           //enemyCategory
     let bossCategory:UInt32 = 0b1 << 3          //itemCategory
+    let bugBulletCategory:UInt32 = 0b1 << 4          //bugBulletCategory
 
     
     override func didMove(to view: SKView) {
@@ -54,7 +57,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         screenWidth = frame.width
         screenHeight = frame.height
         boss = (self.childNode(withName: "boss") as! SKSpriteNode)
-        weapon = (self.childNode(withName: "weapon") as! SKSpriteNode)
+        weapon = (self.childNode(withName: DefenderName) as! SKSpriteNode)
         
         // Variable that help to change avatar and scale for each group of bugs
         var currentGroup = -1
@@ -103,10 +106,10 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         music.autoplayLooped = true
         
         // setup contact detection for our hero
-        weapon = self.childNode(withName: "weapon") as? SKSpriteNode
+        weapon = self.childNode(withName: DefenderName) as? SKSpriteNode
         weapon?.physicsBody?.categoryBitMask = weaponCategory
         weapon?.physicsBody?.collisionBitMask = noCategory
-        weapon?.physicsBody?.contactTestBitMask = bugCategory | bossCategory
+        weapon?.physicsBody?.contactTestBitMask = bugCategory | bossCategory | bugBulletCategory
         
         // setup contact detection for the boss ship
         boss = self.childNode(withName: "boss") as? SKSpriteNode
@@ -145,6 +148,46 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         
         contact.bodyA.node?.removeFromParent()
         contact.bodyB.node?.removeFromParent()
+        
+        if contact.bodyA.node?.name == DefenderName || contact.bodyB.node?.name == DefenderName {
+            // If one of the collision involves our hero, then decrease his lives and apply logic to continue playing
+            ScoreManager.Lives -= 1
+            
+            if ScoreManager.Lives > 0 {
+                // Setup delay and condition to wait until next hero live is in play
+                stopHeroShooting = true
+                let delay = SKAction.wait(forDuration: 3.0)
+                
+                // Show a label, so the user knows he need to wait 3 seconds to continue playing
+                standByLabel = Label(labelString: "Continue in 3 seconds!", position: CGPoint(x: screenWidth! * 0.5, y: frame.height - 80.0), fontSize: 38.0, fontName: "Dock51", fontColor: SKColor.white, isCentered: true)
+                self.addChild(standByLabel!)
+                
+                self.run(delay) {
+                    self.standByLabel?.removeFromParent()
+                    self.stopHeroShooting = false
+                    let texture = SKTexture(imageNamed: DefenderName)
+                    self.weapon = SKSpriteNode(texture: texture, size: texture.size())
+                    self.weapon?.name = DefenderName
+                    
+                    // Setup scale for image
+                    self.weapon?.setScale(CGFloat(0.15))
+                    
+                    // initial position of our defender hero
+                    self.weapon?.position = CGPoint(x: screenWidth! * 0.5, y: 25)
+                    self.addChild(self.weapon!)
+                    
+                    // setup contact detection for our hero
+                    self.weapon?.physicsBody = SKPhysicsBody(rectangleOf: (self.weapon?.frame.size)!)
+                    self.weapon?.physicsBody!.isDynamic = true
+                    self.weapon?.physicsBody!.affectedByGravity = false
+                    self.weapon?.physicsBody?.categoryBitMask = self.weaponCategory
+                    self.weapon?.physicsBody?.collisionBitMask = self.noCategory
+                    self.weapon?.physicsBody?.contactTestBitMask = self.bugCategory | self.bossCategory | self.bugBulletCategory
+                    
+                }
+                
+            }
+        }
     }
 
     
@@ -228,6 +271,10 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             return
         }
         
+        if stopHeroShooting {
+            return
+        }
+        
         shootBullet()
         
         // reset timer
@@ -249,7 +296,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         //remove bullets after 1 sec. to decrease number of nodes
         let waitAction = SKAction.wait(forDuration: 1.0)
         let removeAction = SKAction.removeFromParent()
-        bullet?.run(SKAction.sequence([waitAction,removeAction]))
+        bullet?.run(SKAction.sequence([waitAction,removeAction]), withKey: DefenderBulletAction)
     }
     
     func fireBugBullets(forUpdate currentTime: CFTimeInterval) {
@@ -267,16 +314,24 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             if allBugs.count > 0 {
                 // Decide on bug randomly
                 let randomIndex = Int(arc4random_uniform(UInt32(allBugs.count)))
-                let invader = allBugs[randomIndex]
+                let oneBug = allBugs[randomIndex]
                 
-                // Create the bullet and the destinatio (bottom edge of the screen)
-                let bullet: SKNode = SKSpriteNode(color: SKColor.magenta, size: BulletSize)
+                // Create the bullet and the destination (bottom edge of the screen)
+                let bullet: SKSpriteNode = SKSpriteNode(color: SKColor.magenta, size: BulletSize)
                 bullet.name = BugBulletName
                 bullet.position = CGPoint(
-                    x: invader.position.x,
-                    y: invader.position.y - invader.frame.size.height / 2 + bullet.frame.size.height / 2
+                    x: oneBug.position.x,
+                    y: oneBug.position.y - oneBug.frame.size.height / 2 + bullet.frame.size.height / 2
                 )
-                let bulletDestination = CGPoint(x: invader.position.x, y: -(bullet.frame.size.height / 2))
+                let bulletDestination = CGPoint(x: oneBug.position.x, y: -(bullet.frame.size.height / 2))
+               
+                // Set up contact detection for this bullet
+                bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.frame.size)
+                bullet.physicsBody!.isDynamic = true
+                bullet.physicsBody!.affectedByGravity = false
+                bullet.physicsBody?.categoryBitMask = bugBulletCategory
+                bullet.physicsBody?.collisionBitMask = noCategory
+                bullet.physicsBody?.contactTestBitMask = weaponCategory
                 
                 // Fire the buttlet using actions
                 fireBugBullet(
