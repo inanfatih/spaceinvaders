@@ -34,6 +34,9 @@
 		E158F986203BE962004F9F30 /* music.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 63A6C770203AA14F00BD5806 /* music.m4a */; };
 		E158F987203BE962004F9F30 /* laser.wav in Resources */ = {isa = PBXBuildFile; fileRef = 63A6C76E203A9B1C00BD5806 /* laser.wav */; };
 		E158F988203BE967004F9F30 /* Dock51.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A6C76A203A929700BD5806 /* Dock51.ttf */; };
+		E1720C58203E226A00ADD85A /* instructionsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = E1720C57203E226A00ADD85A /* instructionsButton.png */; };
+		E1720C5A203E267800ADD85A /* InstructionsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E1720C59203E267800ADD85A /* InstructionsScene.sks */; };
+		E1720C5C203E269500ADD85A /* InstructionsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1720C5B203E269500ADD85A /* InstructionsScene.swift */; };
 		E1E0AB22203B3247008E5B52 /* Bug.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0AB21203B3247008E5B52 /* Bug.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +70,9 @@
 		63A6C773203AAE0600BD5806 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E158F97F203BCD4E004F9F30 /* BugLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugLine.swift; sourceTree = "<group>"; };
 		E158F982203BDBB3004F9F30 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E1720C57203E226A00ADD85A /* instructionsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instructionsButton.png; sourceTree = "<group>"; };
+		E1720C59203E267800ADD85A /* InstructionsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = InstructionsScene.sks; sourceTree = "<group>"; };
+		E1720C5B203E269500ADD85A /* InstructionsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsScene.swift; sourceTree = "<group>"; };
 		E1E0AB21203B3247008E5B52 /* Bug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bug.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +115,7 @@
 				634E605C2037F36300036980 /* Actions.sks */,
 				634E60622037F36300036980 /* Main.storyboard */,
 				634E60652037F36300036980 /* Assets.xcassets */,
+				E1720C57203E226A00ADD85A /* instructionsButton.png */,
 				634E60672037F36300036980 /* LaunchScreen.storyboard */,
 				634E606A2037F36300036980 /* Info.plist */,
 			);
@@ -148,6 +155,8 @@
 				634E605E2037F36300036980 /* GameScene.swift */,
 				63A6C764203A2BC600BD5806 /* GameOverScene.sks */,
 				63A6C766203A2BEA00BD5806 /* GameOverScene.swift */,
+				E1720C59203E267800ADD85A /* InstructionsScene.sks */,
+				E1720C5B203E269500ADD85A /* InstructionsScene.swift */,
 			);
 			path = GameScene;
 			sourceTree = "<group>";
@@ -250,11 +259,13 @@
 				6376A97A2038C26A00B7ADF9 /* MainMenu.sks in Resources */,
 				63A6C775203AAE0600BD5806 /* Assets.xcassets in Resources */,
 				634E605B2037F36300036980 /* GameScene.sks in Resources */,
+				E1720C58203E226A00ADD85A /* instructionsButton.png in Resources */,
 				634E60662037F36300036980 /* Assets.xcassets in Resources */,
 				63A6C74F203A0EF200BD5806 /* Explosion.sks in Resources */,
 				634E60692037F36300036980 /* LaunchScreen.storyboard in Resources */,
 				63A6C765203A2BC600BD5806 /* GameOverScene.sks in Resources */,
 				634E605D2037F36300036980 /* Actions.sks in Resources */,
+				E1720C5A203E267800ADD85A /* InstructionsScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +287,7 @@
 				634E60592037F36300036980 /* AppDelegate.swift in Sources */,
 				6376A97E2038C2D900B7ADF9 /* MainMenu.swift in Sources */,
 				63A6C767203A2BEA00BD5806 /* GameOverScene.swift in Sources */,
+				E1720C5C203E269500ADD85A /* InstructionsScene.swift in Sources */,
 				63A6C769203A424C00BD5806 /* Label.swift in Sources */,
 				63A6C756203A285300BD5806 /* GameProtocol.swift in Sources */,
 			);
