@@ -13,12 +13,18 @@ class GameOverScene: SKScene {
     
     override func didMove(to view: SKView) {
        
+        ScoreManager.UpdateHighscore()
+        
         // add Game Over Label
         self.gameOverLabel = Label(labelString: "Game Over", position: CGPoint(x: frame.width * 0.5, y: frame.height * 0.5), fontSize: 60.0, fontName: "Dock51", fontColor: SKColor.yellow, isCentered: true)
         self.addChild(gameOverLabel!)
         
         // add Press Any Key Label
         self.pressAnyKeyLabel = Label(labelString: "Press Any Key to Restart", position: CGPoint(x: frame.width * 0.5, y: (frame.height * 0.5) - 50.0), fontSize: 25.0, fontName: "Dock51", fontColor: SKColor.yellow, isCentered: true)
+        self.addChild(pressAnyKeyLabel!)
+        
+        // Highscore label
+        self.pressAnyKeyLabel = Label(labelString: "Highscore: \(ScoreManager.getHighscore())", position: CGPoint(x: frame.width * 0.5, y: (frame.height * 0.5) - 100.0), fontSize: 25.0, fontName: "Dock51", fontColor: SKColor.yellow, isCentered: true)
         self.addChild(pressAnyKeyLabel!)
     }
     
