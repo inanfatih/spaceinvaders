@@ -5,12 +5,8 @@ import UIKit
 class YouWin: SKScene {
 
     
-    var winScoreLabel:SKLabelNode!
-    var score:Int = 0 {
-        didSet {
-            winScoreLabel.text = "Score: \(score)"
-        }
-    }
+    var hsLabel:Label!
+   
     
     override func didMove(to view: SKView) {
 //        let scene:SKScene = SKScene(fileNamed: "YouWin")!
@@ -19,9 +15,12 @@ class YouWin: SKScene {
 //
         
         // add score label
-        winScoreLabel = Label(labelString: "Your Score: \(ScoreManager.Score)", position: CGPoint(x: frame.width * 0.45, y: frame.height - 300.0), fontSize: 30.0, fontName: "Dock51", fontColor: SKColor.blue, isCentered: false)
-        winScoreLabel.zPosition = 10
-        self.addChild(winScoreLabel!)
+//        winScoreLabel = Label(labelString: "Your Score: \(ScoreManager.Score)", position: CGPoint(x: frame.width * 0.45, y: frame.height - 300.0), fontSize: 30.0, fontName: "Dock51", fontColor: SKColor.blue, isCentered: false)
+//        winScoreLabel.zPosition = 10
+//        self.addChild(winScoreLabel!)
+        
+        self.hsLabel = Label(labelString: "Highscore: \(ScoreManager.getHighscore())", position: CGPoint(x: frame.width * 0.5, y: (frame.height * 0.5) - 200.0), fontSize: 50.0, fontName: "Dock51", fontColor: SKColor.black, isCentered: true)
+        self.addChild(hsLabel!)
     }
     
     func touchDown(atPoint pos : CGPoint) {
