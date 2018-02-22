@@ -67,7 +67,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             let changeY: Double = separationY * Double(row)
             let newPositionY = firstRowPositionY + changeY
             // Every 2 lines, we change the bug avatar
-            if row % 2 == 0 {
+            if row % 3 == 0 {
                 currentGroup = currentGroup + 1
             }
             bugsSprites.append(BugLine());
@@ -350,7 +350,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
                 fireBugBullet(
                     bullet: bullet,
                     toDestination: bulletDestination,
-                    withDuration: 2.0,
+                    withDuration: 0.5,
                     andSoundFileName: "laser.wav"
                 )
             }
