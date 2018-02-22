@@ -50,7 +50,7 @@ class Bug: GameObject {
         
         let dyPercentile = (self.dy!.truncatingRemainder(dividingBy: 500))
         if (dyPercentile == 0) {
-            self.position.y -= (self.dy! + 0.3)
+            self.position.y -= (self.dy! + 0.25)
         }
     }
     
