@@ -19,7 +19,7 @@ class YouWin: SKScene {
 //        winScoreLabel.zPosition = 10
 //        self.addChild(winScoreLabel!)
         
-        self.hsLabel = Label(labelString: "Highscore: \(ScoreManager.getHighscore())", position: CGPoint(x: frame.width * 0.5, y: (frame.height * 0.5) - 200.0), fontSize: 50.0, fontName: "Dock51", fontColor: SKColor.black, isCentered: true)
+        self.hsLabel = Label(labelString: "Your Score: \(ScoreManager.Score)", position: CGPoint(x: frame.width * 0.5, y: (frame.height * 0.5) - 200.0), fontSize: 50.0, fontName: "Dock51", fontColor: SKColor.black, isCentered: true)
         self.addChild(hsLabel!)
     }
     
