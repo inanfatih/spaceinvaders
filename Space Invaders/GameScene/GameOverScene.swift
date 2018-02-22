@@ -13,6 +13,8 @@ class GameOverScene: SKScene {
     
     override func didMove(to view: SKView) {
        
+        ScoreManager.UpdateHighscore()
+        
         // add Game Over Label
         self.gameOverLabel = Label(labelString: "Game Over", position: CGPoint(x: frame.width * 0.5, y: frame.height * 0.5), fontSize: 60.0, fontName: "Dock51", fontColor: SKColor.yellow, isCentered: true)
         self.addChild(gameOverLabel!)
