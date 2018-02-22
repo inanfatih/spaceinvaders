@@ -8,6 +8,7 @@ class GameOverScene: SKScene {
    
     var gameOverLabel: Label?
     var pressAnyKeyLabel: Label?
+    var hsLabel: Label?
     
     
     
@@ -24,8 +25,8 @@ class GameOverScene: SKScene {
         self.addChild(pressAnyKeyLabel!)
         
         // Highscore label
-        self.pressAnyKeyLabel = Label(labelString: "Highscore: \(ScoreManager.getHighscore())", position: CGPoint(x: frame.width * 0.5, y: (frame.height * 0.5) - 100.0), fontSize: 25.0, fontName: "Dock51", fontColor: SKColor.yellow, isCentered: true)
-        self.addChild(pressAnyKeyLabel!)
+        self.hsLabel = Label(labelString: "Highscore: \(ScoreManager.getHighscore())", position: CGPoint(x: frame.width * 0.5, y: (frame.height * 0.5) - 100.0), fontSize: 25.0, fontName: "Dock51", fontColor: SKColor.yellow, isCentered: true)
+        self.addChild(hsLabel!)
     }
     
     
