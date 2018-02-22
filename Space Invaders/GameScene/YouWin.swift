@@ -5,13 +5,23 @@ import UIKit
 class YouWin: SKScene {
 
     
-    var scoreLabel:SKLabelNode!
-    
+    var winScoreLabel:SKLabelNode!
+    var score:Int = 0 {
+        didSet {
+            winScoreLabel.text = "Score: \(score)"
+        }
+    }
     
     override func didMove(to view: SKView) {
+//        let scene:SKScene = SKScene(fileNamed: "YouWin")!
+//        scoreLabel = scene.childNode(withName: "scoreLabel") as! SKLabelNode
+//        scoreLabel.text = "Your Score: \(ScoreManager.Score)"
+//
         
-        scoreLabel.text = "Your Score: \(ScoreManager.Score)"
-        
+        // add score label
+        winScoreLabel = Label(labelString: "Your Score: \(ScoreManager.Score)", position: CGPoint(x: frame.width * 0.45, y: frame.height - 300.0), fontSize: 30.0, fontName: "Dock51", fontColor: SKColor.blue, isCentered: false)
+        winScoreLabel.zPosition = 10
+        self.addChild(winScoreLabel!)
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -44,8 +54,8 @@ class YouWin: SKScene {
                     }
                 }
             }
-            
         }
+        
         
     }
     
