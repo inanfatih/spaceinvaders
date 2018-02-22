@@ -159,6 +159,14 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         if contact.bodyA.node?.name == BossNodeName || contact.bodyB.node?.name == BossNodeName {
             ScoreManager.Score += PointsForBoss
             scoreLabel.text = "Score: \(ScoreManager.Score)"
+            
+            if let view = self.view {
+                if let scene = SKScene(fileNamed: "YouWin") {
+                    scene.scaleMode = .aspectFit
+                    view.presentScene(scene)
+                }
+            }
+            
         }
         
         // Logic applied when our hero is destroyed by bugs bullets
