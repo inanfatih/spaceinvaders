@@ -1,5 +1,18 @@
-
-
+/*
+ * GameScene.swift
+ * Project: Space Invaders
+ * Students:
+ *          Irvinder Kaur           300929258
+ *          Kamalpreet Singh        300976062
+ *          Mehmet Fatih Inan       300966544
+ *          Robert Argume           300949529
+ *
+ * Date: Mar 22, 2018
+ * Description: Initial screen for the game
+ *              Based on Professor Tom Tsiliopoulos code
+ * Version: 0.1
+ *     - Add button to get instructions and tap to start game
+ */
 import SpriteKit
 import GameplayKit
 import CoreMotion
@@ -28,19 +41,13 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     // variables to manage labels
     var livesLabel: Label?
     var standByLabel: Label?
+    var scoreLabel:SKLabelNode!
     
     // variables to manage shooting frequency
     var fireRate:TimeInterval = 0.5
     var timeSinceFire:TimeInterval = 0
     var lastTime:TimeInterval = 0
     var stopHeroShooting = false;
-    
-    var scoreLabel:SKLabelNode!
-    var score:Int = 0 {
-        didSet {
-            scoreLabel.text = "Score: \(score)"
-        }
-    }
     
     // setup accelerometer
     let motionManger = CMMotionManager()
@@ -54,7 +61,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     let bossCategory:UInt32 = 0b1 << 3          //itemCategory
     let bugBulletCategory:UInt32 = 0b1 << 4          //bugBulletCategory
     let defenseCategory:UInt32 = 0b1 << 5          //defenseCategory
-
     
     override func didMove(to view: SKView) {
         // To allow Physics contact delegate to work
@@ -220,13 +226,10 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
                     self.weapon?.physicsBody?.categoryBitMask = self.weaponCategory
                     self.weapon?.physicsBody?.collisionBitMask = self.noCategory
                     self.weapon?.physicsBody?.contactTestBitMask = self.bugCategory | self.bossCategory | self.bugBulletCategory
-                    
                 }
-                
             }
         }
     }
-
     
     func touchDown(atPoint pos : CGPoint) {
         self.weapon?.position = CGPoint(x: pos.x, y: 25)
@@ -257,7 +260,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        //redBug?.physicsBody?.velocity = CGVector(dx: 25, dy: 0)
         
         // Check if bugs touches land. In that case, player has lost the game
         for bugLine in bugsSprites {

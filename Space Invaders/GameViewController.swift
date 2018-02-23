@@ -1,10 +1,17 @@
-//
-//  GameViewController.swift
-//  Space Invaders
-//
-//  Created by Fatih inan on 2/17/18.
-//  Copyright © 2018 Fatih inan. All rights reserved.
-//
+/*
+ * GameViewController.swift
+ * Project: Space Invaders
+ * Students:
+ *          Irvinder Kaur           300929258
+ *          Kamalpreet Singh        300976062
+ *          Mehmet Fatih Inan       300966544
+ *          Robert Argume           300949529
+ *
+ * Date: Mar 22, 2018
+ * Description: Arcade game inspired on Space Invaders
+ * Version: 0.1
+ *     - Main game view controller to start our game
+ */
 
 import UIKit
 import SpriteKit

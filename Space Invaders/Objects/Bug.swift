@@ -10,7 +10,7 @@
  * Date: Mar 22, 2018
  * Description: Arcade game inspired on Space Invaders
  * Version: 0.1
- *     - Add class to manage Bugs
+ *     - Add class to manage a Bug
  */
 import SpriteKit
 import GameplayKit

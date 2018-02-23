@@ -1,4 +1,17 @@
-
+/*
+ * Label.swift
+ * Project: Space Invaders
+ * Students:
+ *          Irvinder Kaur           300929258
+ *          Kamalpreet Singh        300976062
+ *          Mehmet Fatih Inan       300966544
+ *          Robert Argume           300949529
+ *
+ * Date: Mar 22, 2018
+ * Description: Wraper class to manage Sprite Kit label node
+ * Version: 0.1
+ *     - Establishes initialization properties and position
+ */
 
 import SpriteKit
 import CoreGraphics

@@ -1,11 +1,17 @@
-//
-//  AppDelegate.swift
-//  Space Invaders
-//
-//  Created by Fatih inan on 2/17/18.
-//  Copyright © 2018 Fatih inan. All rights reserved.
-//
-
+/*
+ * YouWin.swift
+ * Project: Space Invaders
+ * Students:
+ *          Irvinder Kaur           300929258
+ *          Kamalpreet Singh        300976062
+ *          Mehmet Fatih Inan       300966544
+ *          Robert Argume           300949529
+ *
+ * Date: Mar 22, 2018
+ * Description: App Delegate class
+ * Version: 0.1
+ *     - No changes to the default App delegate
+ */
 import UIKit
 
 @UIApplicationMain

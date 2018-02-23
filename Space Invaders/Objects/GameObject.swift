@@ -1,4 +1,18 @@
-
+/*
+ * GameObject.swift
+ * Project: Space Invaders
+ * Students:
+ *          Irvinder Kaur           300929258
+ *          Kamalpreet Singh        300976062
+ *          Mehmet Fatih Inan       300966544
+ *          Robert Argume           300949529
+ *
+ * Date: Mar 22, 2018
+ * Description: Defines a Game object. Inherits from Sprite Kit Node and implemnents our game protocol
+ *              Based on Professor Tom Tsiliopoulos code
+ * Version: 0.1
+ *     - Established properties for managing game objects along the game
+ */
 
 import SpriteKit
 import GameplayKit

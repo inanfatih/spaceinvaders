@@ -1,3 +1,20 @@
+/*
+ * ScoreManager.swift
+ * Project: Space Invaders
+ * Students:
+ *          Irvinder Kaur           300929258
+ *          Kamalpreet Singh        300976062
+ *          Mehmet Fatih Inan       300966544
+ *          Robert Argume           300949529
+ *
+ * Date: Mar 22, 2018
+ * Description: Manages scores, lives and highest score for the game
+ *              Based on Professor Tom Tsiliopoulos code
+ * Version: 0.1
+ *     - Maintain basic score and lives
+ * Version: 0.2
+ *     - Mantain highest score
+ */
 import SpriteKit
 import UIKit
 
@@ -12,7 +29,7 @@ class ScoreManager {
     public static func UpdateHighscore() {
         
         // Get User Defaults
-        var highscore = UserDefaults.standard.integer(forKey: HIGHSCORE_KEY)
+        let highscore = UserDefaults.standard.integer(forKey: HIGHSCORE_KEY)
         
         print("highscore \(highscore)")
         print("score \(Score)")
@@ -27,7 +44,7 @@ class ScoreManager {
     
     public static func getHighscore() -> Int {
         
-        var highscore = UserDefaults.standard.integer(forKey: HIGHSCORE_KEY)
+        let highscore = UserDefaults.standard.integer(forKey: HIGHSCORE_KEY)
         
         if (highscore < Score) {
             return Score            

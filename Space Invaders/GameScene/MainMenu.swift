@@ -1,4 +1,17 @@
-
+/*
+ * MainMenu.swift
+ * Project: Space Invaders
+ * Students:
+ *          Irvinder Kaur           300929258
+ *          Kamalpreet Singh        300976062
+ *          Mehmet Fatih Inan       300966544
+ *          Robert Argume           300949529
+ *
+ * Date: Mar 22, 2018
+ * Description: Initial screen for the game
+ * Version: 0.1
+ *     - Add button to get instructions and tap to start game
+ */
 import UIKit
 import SpriteKit
 import GameplayKit

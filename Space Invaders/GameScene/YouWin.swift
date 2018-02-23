@@ -1,3 +1,17 @@
+/*
+ * YouWin.swift
+ * Project: Space Invaders
+ * Students:
+ *          Irvinder Kaur           300929258
+ *          Kamalpreet Singh        300976062
+ *          Mehmet Fatih Inan       300966544
+ *          Robert Argume           300949529
+ *
+ * Date: Mar 22, 2018
+ * Description: Screen that is shown when the player wins the game
+ * Version: 0.1
+ *     - Shows congratulation image, highest score, and gives chance to go to main menu
+ */
 import SpriteKit
 import GameplayKit
 import UIKit
@@ -5,22 +19,14 @@ import UIKit
 class YouWin: SKScene {
 
     
-    var hsLabel:Label!
+    var currentScoreLabel:Label!
    
     
     override func didMove(to view: SKView) {
-//        let scene:SKScene = SKScene(fileNamed: "YouWin")!
-//        scoreLabel = scene.childNode(withName: "scoreLabel") as! SKLabelNode
-//        scoreLabel.text = "Your Score: \(ScoreManager.Score)"
-//
+
         
-        // add score label
-//        winScoreLabel = Label(labelString: "Your Score: \(ScoreManager.Score)", position: CGPoint(x: frame.width * 0.45, y: frame.height - 300.0), fontSize: 30.0, fontName: "Dock51", fontColor: SKColor.blue, isCentered: false)
-//        winScoreLabel.zPosition = 10
-//        self.addChild(winScoreLabel!)
-        
-        self.hsLabel = Label(labelString: "Your Score: \(ScoreManager.Score)", position: CGPoint(x: frame.width * 0.5, y: (frame.height * 0.5) - 200.0), fontSize: 50.0, fontName: "Dock51", fontColor: SKColor.black, isCentered: true)
-        self.addChild(hsLabel!)
+        self.currentScoreLabel = Label(labelString: "Your Score: \(ScoreManager.Score)", position: CGPoint(x: frame.width * 0.5, y: (frame.height * 0.5) - 200.0), fontSize: 50.0, fontName: "Dock51", fontColor: SKColor.black, isCentered: true)
+        self.addChild(currentScoreLabel!)
     }
     
     func touchDown(atPoint pos : CGPoint) {

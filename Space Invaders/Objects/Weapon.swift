@@ -1,11 +1,17 @@
-//
-//  Plane.swift
-//  MAPD724-W2018-Lesson2
-//
-//  Created by Tom Tsiliopoulos on 2018-01-29.
-//  Copyright © 2018 Centennial College. All rights reserved.
-//
-
+/*
+ * Weapon.swift
+ * Project: Space Invaders
+ * Students:
+ *          Irvinder Kaur           300929258
+ *          Kamalpreet Singh        300976062
+ *          Mehmet Fatih Inan       300966544
+ *          Robert Argume           300949529
+ *
+ * Date: Mar 22, 2018
+ * Description: Defines game object for our defender hero
+ * Version: 0.1
+ *     - Establishes initialization and boundaries of movement
+ */
 import SpriteKit
 
 class Weapon: GameObject {

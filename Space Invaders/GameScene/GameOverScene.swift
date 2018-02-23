@@ -1,3 +1,17 @@
+/*
+ * GameOverScene.swift
+ * Project: Space Invaders
+ * Students:
+ *          Irvinder Kaur           300929258
+ *          Kamalpreet Singh        300976062
+ *          Mehmet Fatih Inan       300966544
+ *          Robert Argume           300949529
+ *
+ * Date: Mar 22, 2018
+ * Description: Game over screen
+ * Version: 0.1
+ *     - Shows highest score and gives chance to start playing again
+ */
 import SpriteKit
 import GameplayKit
 import UIKit
