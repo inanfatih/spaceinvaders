@@ -16,17 +16,20 @@ var Ground = SKSpriteNode()
 
 class GameScene: SKScene,SKPhysicsContactDelegate {
     
+    // variables to manage game nodes
     var boss: SKSpriteNode?
     var aBug: SKSpriteNode?
     var weapon: SKSpriteNode?
     var bullet: SKSpriteNode?
   
     var bugsSprites: [BugLine] = []
+     var defenseBlocks: [SKSpriteNode?] = []
     
+    // variables to manage labels
     var livesLabel: Label?
     var standByLabel: Label?
-    //var scoreLabel: Label?
     
+    // variables to manage shooting frequency
     var fireRate:TimeInterval = 0.5
     var timeSinceFire:TimeInterval = 0
     var lastTime:TimeInterval = 0
@@ -39,15 +42,18 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         }
     }
     
+    // setup accelerometer
     let motionManger = CMMotionManager()
     var xAcceleration:CGFloat = 0
     
+    // Setup masks for contact detection
     let noCategory:UInt32 = 0
     let bulletCategory:UInt32 = 0b1             //laserCategory
     let weaponCategory:UInt32 = 0b1 << 1        //playerCategory
     let bugCategory:UInt32 = 0b1 << 2           //enemyCategory
     let bossCategory:UInt32 = 0b1 << 3          //itemCategory
     let bugBulletCategory:UInt32 = 0b1 << 4          //bugBulletCategory
+    let defenseCategory:UInt32 = 0b1 << 5          //defenseCategory
 
     
     override func didMove(to view: SKView) {
@@ -116,6 +122,16 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         boss?.physicsBody?.categoryBitMask = bossCategory
         boss?.physicsBody?.collisionBitMask = noCategory
         boss?.physicsBody?.contactTestBitMask = weaponCategory
+        
+        // setup contact detection for the defense blocks
+        defenseBlocks.append(self.childNode(withName: DefenseBlockLeft) as? SKSpriteNode)
+        defenseBlocks.append(self.childNode(withName: DefenseBlockCenter) as? SKSpriteNode)
+        defenseBlocks.append(self.childNode(withName: DefenseBlockRight) as? SKSpriteNode)
+        for block in defenseBlocks {
+            block?.physicsBody?.categoryBitMask = defenseCategory
+            block?.physicsBody?.collisionBitMask = noCategory
+            block?.physicsBody?.contactTestBitMask = bugBulletCategory
+        }
         
         // initial position of our defender hero
         self.weapon?.position = CGPoint(x: screenWidth! * 0.5, y: 25)

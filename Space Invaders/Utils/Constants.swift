@@ -43,3 +43,7 @@ let DefenderName = "weapon"
 let PointsForBug = 50
 let PointsForBoss = 200
 
+// Defense blocks
+let DefenseBlockLeft = "shelter"
+let DefenseBlockCenter = "shelter2"
+let DefenseBlockRight = "shelter3"
